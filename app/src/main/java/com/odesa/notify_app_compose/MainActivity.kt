@@ -1,5 +1,6 @@
 package com.odesa.notify_app_compose
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -29,3 +30,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+const val GRID_VIEW = Activity.RESULT_FIRST_USER + 1
+const val LIST_VIEW = Activity.RESULT_FIRST_USER + 2
+const val SIMPLE_LIST_VIEW = Activity.RESULT_FIRST_USER + 3
