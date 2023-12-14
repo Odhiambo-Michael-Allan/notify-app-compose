@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Notify</string>
     <string name="title_placeholder">Title</string>
+    <string name="edit">Edit</string>
 </resources>

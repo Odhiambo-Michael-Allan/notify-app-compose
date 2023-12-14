@@ -1,4 +1,4 @@
-package com.odesa.notify_app_compose.ui.notesFragment
+package com.odesa.notify_app_compose.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +22,7 @@ import com.odesa.notify_app_compose.R
 import com.odesa.notify_app_compose.ui.theme.NotifyappcomposeTheme
 
 @Composable
-fun NoteItem(
+fun DefaultNoteView(
     title: String,
     description: String,
     modifier: Modifier = Modifier
@@ -40,22 +40,38 @@ fun NoteItem(
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleMedium,
                 fontFamily = FontFamily.Monospace,
                 modifier = modifier
-                    .padding( top = 8.dp, bottom = 8.dp )
+                    .padding( 16.dp )
             )
             Text(
                 text = description,
                 fontFamily = FontFamily.Monospace,
+                style = MaterialTheme.typography.bodyMedium,
                 modifier = modifier
-                    .padding( top = 8.dp, bottom = 8.dp ) )
+                    .padding( 16.dp ) )
         }
     }
 }
 
+@Preview( showBackground = true )
 @Composable
-fun NoteSimpleListItem(
+fun DefaultNoteViewPreview() {
+    NotifyappcomposeTheme {
+        DefaultNoteView(
+            title = "Refactor WaterCounter composable by splitting it " +
+                    "into two parts: stateful and stateless Counter.",
+            description = "The role of the StatelessCounter is to display the count " +
+                    "and call a function when you increment the count. To do this," +
+                    " follow the pattern described above and pass the state, count" +
+                    " (as a parameter to the composable function), and a lambda" +
+                    " (onIncrement), that is called when the state needs to be incremented" )
+    }
+}
+
+@Composable
+fun SimpleListNoteView(
     title: String,
     description: String,
     modifier: Modifier = Modifier
@@ -72,7 +88,7 @@ fun NoteSimpleListItem(
             ),
             border = BorderStroke( 1.dp, Color( R.color.cardOutlineColor ) ),
             modifier = modifier
-                .size( 150.dp )
+                .size( 100.dp )
         ) {
             Column(
                 modifier = modifier.padding( 16.dp )
@@ -80,7 +96,8 @@ fun NoteSimpleListItem(
                 Text(
                     text = title,
                     maxLines = 6,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.bodySmall
                 )
             }
         }
@@ -91,15 +108,17 @@ fun NoteSimpleListItem(
                 text = title,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.titleSmall,
-                fontFamily = FontFamily.Monospace
+                style = MaterialTheme.typography.titleMedium,
+                fontFamily = FontFamily.Monospace,
+                modifier = modifier.padding( start = 16.dp, end = 16.dp )
             )
             Text(
                 text = description,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
                 fontFamily = FontFamily.Monospace,
                 maxLines = 3,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
+                modifier = modifier.padding( start = 16.dp, end = 16.dp  )
             )
         }
     }
@@ -107,24 +126,9 @@ fun NoteSimpleListItem(
 
 @Preview( showBackground = true )
 @Composable
-fun NoteItemPreview() {
+fun NoteSimpleListViewPreview() {
     NotifyappcomposeTheme {
-        NoteItem(
-            title = "Refactor WaterCounter composable by splitting it " +
-                    "into two parts: stateful and stateless Counter.",
-            description = "The role of the StatelessCounter is to display the count " +
-                    "and call a function when you increment the count. To do this," +
-                    " follow the pattern described above and pass the state, count" +
-                    " (as a parameter to the composable function), and a lambda" +
-                    " (onIncrement), that is called when the state needs to be incremented" )
-    }
-}
-
-@Preview( showBackground = true )
-@Composable
-fun NoteSimpleListItemPreview() {
-    NotifyappcomposeTheme {
-        NoteSimpleListItem(
+        SimpleListNoteView(
             title = "Refactor WaterCounter composable by splitting it " +
                     "into two parts: stateful and stateless Counter.",
             description = "The role of the StatelessCounter is to display the count " +

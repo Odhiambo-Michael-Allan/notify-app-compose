@@ -1,4 +1,4 @@
-package com.odesa.notify_app_compose.ui.menus
+package com.odesa.notify_app_compose.ui.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Edit

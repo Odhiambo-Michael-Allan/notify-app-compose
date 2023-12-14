@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.odesa.notify_app_compose.ui.notesFragment.NotesScreen
+import com.odesa.notify_app_compose.ui.components.NotesScreen
 import com.odesa.notify_app_compose.ui.theme.NotifyappcomposeTheme
 
 class MainActivity : ComponentActivity() {
