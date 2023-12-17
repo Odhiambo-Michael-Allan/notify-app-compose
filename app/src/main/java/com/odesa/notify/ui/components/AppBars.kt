@@ -73,6 +73,7 @@ fun DefaultActions(
     onSimpleListMenuItemClick: () -> Unit
 ) {
     var dropdownMenuExpanded by remember { mutableStateOf( false ) }
+
     Row {
         IconButton( onClick = onSearchMenuItemClick ) {
             Icon(
@@ -120,7 +121,7 @@ fun TrashActions(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn( ExperimentalMaterial3Api::class )
 @Preview( showBackground = true )
 @Composable
 fun TopBarPreview() {

@@ -128,7 +128,6 @@ fun AppContent(
         }
     ) {
         Scaffold() { contentPadding ->
-            // Screen content
             NotifyNavHost(
                 modifier = Modifier.padding( contentPadding ),
                 navController = navController,

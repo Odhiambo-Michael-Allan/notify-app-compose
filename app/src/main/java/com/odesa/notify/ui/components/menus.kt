@@ -32,10 +32,7 @@ fun DefaultDropdownMenu(
 
     DropdownMenu(
         expanded = expanded,
-        onDismissRequest = {
-            onDismissRequest()
-            viewDropdownMenuExpanded = false
-        }
+        onDismissRequest = onDismissRequest
     ) {
         DropdownMenuItem(
             text = { Text( text = stringResource( id = R.string.edit ) ) },
@@ -69,6 +66,7 @@ fun DefaultDropdownMenu(
     }
     ViewDropDownMenu(
         expanded = viewDropdownMenuExpanded,
+        onDismissRequest = { viewDropdownMenuExpanded = false },
         onGridMenuItemClick = onGridMenuItemClick,
         onListMenuItemClick = onListMenuItemClick,
         onSimpleListMenuItemClick = onSimpleListMenuItemClick
@@ -78,13 +76,14 @@ fun DefaultDropdownMenu(
 @Composable
 fun ViewDropDownMenu(
     expanded: Boolean,
+    onDismissRequest: () -> Unit,
     onGridMenuItemClick: () -> Unit,
     onListMenuItemClick: () -> Unit,
     onSimpleListMenuItemClick: () -> Unit
 ) {
     DropdownMenu(
         expanded = expanded,
-        onDismissRequest = {}
+        onDismissRequest = onDismissRequest
     ) {
         DropdownMenuItem(
             text = { Text( text = stringResource( id = R.string.grid ) ) },
