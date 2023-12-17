@@ -1,6 +1,8 @@
 package com.odesa.notify.ui.components
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Brush
 import androidx.compose.material.icons.filled.Check
@@ -35,19 +37,9 @@ import com.odesa.notify.ui.theme.NotifyTheme
 fun TopBar(
     @StringRes titleId: Int,
     scrollBehavior: TopAppBarScrollBehavior,
-    onNavigationDrawerIconClicked: () -> Unit,
-    onGridMenuItemClick: () -> Unit,
-    onListMenuItemClick: () -> Unit,
-    onSimpleListMenuItemClick: () -> Unit,
-    onSearchMenuItemClick: () -> Unit
+    actions: @Composable RowScope.() -> Unit,
+    onNavigationDrawerIconClick: () -> Unit
 ) {
-    var dropdownMenuExpanded by remember { mutableStateOf( false ) }
-    var viewDropdownMenuExpanded by remember { mutableStateOf( false ) }
-
-    fun resetMenuStates() {
-        dropdownMenuExpanded = false
-        viewDropdownMenuExpanded = false
-    }
 
     CenterAlignedTopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
@@ -55,63 +47,77 @@ fun TopBar(
             titleContentColor = MaterialTheme.colorScheme.primary
         ),
         navigationIcon = {
-            IconButton( onClick = onNavigationDrawerIconClicked ) {
+            IconButton( onClick = onNavigationDrawerIconClick ) {
                 Icon(
                     imageVector = Icons.Filled.Menu,
-                    contentDescription = null
+                    contentDescription = stringResource( id = R.string.navigation_icon )
                 )
             }
         },
-        actions = {
-            IconButton( onClick = { /*TODO*/ } ) {
-                Icon(
-                    imageVector = Icons.Filled.Search,
-                    contentDescription = null
-                )
-            }
-            IconButton( onClick = { dropdownMenuExpanded = true } ) {
-                Icon(
-                    imageVector = Icons.Filled.MoreVert,
-                    contentDescription = null
-                )
-            }
-            TopAppBarDropDownMenu(
-                expanded = dropdownMenuExpanded,
-                onDismissRequest = {
-                    resetMenuStates()
-                },
-                onEditMenuItemClick = {
-                    dropdownMenuExpanded = false
-                },
-                onSortMenuItemClick = {
-                    dropdownMenuExpanded = false
-                }
-            ) {
-                viewDropdownMenuExpanded = true
-            }
-            ViewDropDownMenu(
-                expanded = viewDropdownMenuExpanded,
-                onGridMenuItemClick = {
-                    onGridMenuItemClick()
-                    resetMenuStates()
-                },
-                onListMenuItemClick = {
-                    onListMenuItemClick()
-                    resetMenuStates()
-                },
-                onSimpleListMenuItemClick = {
-                    onSimpleListMenuItemClick()
-                    resetMenuStates()
-                }
-            ) {
-                resetMenuStates()
-            }
-        },
+        actions = actions,
         title = {
             Text( text = stringResource( id = titleId ) )
         },
         scrollBehavior = scrollBehavior
     )
+
+}
+
+@Composable
+fun DefaultActions(
+    onSearchMenuItemClick: () -> Unit,
+    onEditMenuItemClick: () -> Unit,
+    onSortMenuItemClick: () -> Unit,
+    onGridMenuItemClick: () -> Unit,
+    onListMenuItemClick: () -> Unit,
+    onSimpleListMenuItemClick: () -> Unit
+) {
+    var dropdownMenuExpanded by remember { mutableStateOf( false ) }
+    Row {
+        IconButton( onClick = onSearchMenuItemClick ) {
+            Icon(
+                imageVector = Icons.Filled.Search,
+                contentDescription = stringResource( id = R.string.search )
+            )
+        }
+        IconButton( onClick = { dropdownMenuExpanded = true } ) {
+            Icon(
+                imageVector = Icons.Filled.MoreVert,
+                contentDescription = stringResource( id = R.string.more_options )
+            )
+        }
+        DefaultDropdownMenu(
+            expanded = dropdownMenuExpanded,
+            onDismissRequest = { dropdownMenuExpanded = false },
+            onEditMenuItemClick = onEditMenuItemClick,
+            onSortMenuItemClick = onSortMenuItemClick,
+            onGridMenuItemClick = onGridMenuItemClick,
+            onListMenuItemClick = onListMenuItemClick,
+            onSimpleListMenuItemClick = onSimpleListMenuItemClick
+        )
+    }
+}
+
+@Composable
+fun TrashActions(
+    onEditMenuItemClick: () -> Unit,
+    onEmptyTrashMenuItemClick: () -> Unit
+) {
+    var dropdownMenuExpanded by remember { mutableStateOf( false ) }
+    Row {
+        IconButton( onClick = { dropdownMenuExpanded = true } ) {
+            Icon(
+                imageVector = Icons.Filled.MoreVert,
+                contentDescription = stringResource( id = R.string.more_options )
+            )
+        }
+        TrashDropdownMenu(
+            expanded = dropdownMenuExpanded,
+            onDismissRequest = { dropdownMenuExpanded = false },
+            onEditMenuItemClick = { dropdownMenuExpanded = false },
+            onEmptyTrashMenuItemClick = { dropdownMenuExpanded = false }
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -123,10 +129,9 @@ fun TopBarPreview() {
             titleId = R.string.home,
             scrollBehavior = TopAppBarDefaults
                 .enterAlwaysScrollBehavior(rememberTopAppBarState() ),
-            onNavigationDrawerIconClicked = {},
-            onGridMenuItemClick = {},
-            onListMenuItemClick = {},
-            onSimpleListMenuItemClick = {} ) {}
+            onNavigationDrawerIconClick = {},
+            actions = {}
+        )
     }
 }
 

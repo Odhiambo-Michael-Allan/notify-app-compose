@@ -2,6 +2,7 @@ package com.odesa.notify.ui.components
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -21,13 +22,10 @@ fun ScreenContent(
     @StringRes titleId: Int,
     viewType: Int,
     notes: List<Note>,
+    topAppBarActions: @Composable RowScope.() -> Unit,
     bottomBar: @Composable () -> Unit,
     floatingActionButton: @Composable () -> Unit,
-    onNavigationDrawerIconClick: () -> Unit,
-    onGridMenuItemClick: () -> Unit,
-    onListMenuItemClick: () -> Unit,
-    onSimpleListMenuItemClick: () -> Unit,
-    onSearchMenuItemClick: () -> Unit
+    onNavigationDrawerIconClick: () -> Unit
 ) {
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior( rememberTopAppBarState() )
@@ -38,11 +36,8 @@ fun ScreenContent(
             TopBar(
                 titleId = titleId,
                 scrollBehavior = scrollBehavior,
-                onNavigationDrawerIconClicked = onNavigationDrawerIconClick,
-                onGridMenuItemClick = onGridMenuItemClick,
-                onListMenuItemClick = onListMenuItemClick,
-                onSimpleListMenuItemClick = onSimpleListMenuItemClick,
-                onSearchMenuItemClick = onSearchMenuItemClick
+                actions = topAppBarActions,
+                onNavigationDrawerIconClick = onNavigationDrawerIconClick
             )
         },
         bottomBar = bottomBar,

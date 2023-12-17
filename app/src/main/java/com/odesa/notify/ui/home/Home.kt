@@ -7,6 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.odesa.notify.R
 import com.odesa.notify.data.LocalNotesProvider
 import com.odesa.notify.ui.components.BottomBar
+import com.odesa.notify.ui.components.DefaultActions
 import com.odesa.notify.ui.components.Fab
 import com.odesa.notify.ui.components.ScreenContent
 import com.odesa.notify.ui.theme.NotifyTheme
@@ -25,10 +26,16 @@ fun HomeScreen(
         bottomBar = { BottomBar() },
         floatingActionButton = { Fab( onClick = {} ) },
         onNavigationDrawerIconClick = onNavigationDrawerIconClicked,
-        onGridMenuItemClick = { /*TODO*/ },
-        onListMenuItemClick = { /*TODO*/ },
-        onSimpleListMenuItemClick = { /*TODO*/ },
-        onSearchMenuItemClick = {}
+        topAppBarActions = {
+            DefaultActions(
+                onSearchMenuItemClick = { /*TODO*/ },
+                onEditMenuItemClick = { /*TODO*/ },
+                onSortMenuItemClick = { /*TODO*/ },
+                onGridMenuItemClick = { /*TODO*/ },
+                onListMenuItemClick = { /*TODO*/ },
+                onSimpleListMenuItemClick = {}
+            )
+        }
     )
 //    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior( rememberTopAppBarState() )
 //

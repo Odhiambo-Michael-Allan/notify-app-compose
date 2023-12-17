@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.odesa.notify.R
 import com.odesa.notify.ui.components.BottomBar
+import com.odesa.notify.ui.components.DefaultActions
 import com.odesa.notify.ui.components.Fab
 import com.odesa.notify.ui.components.ScreenContent
 
@@ -21,9 +22,15 @@ fun ArchiveScreen(
         bottomBar = {},
         floatingActionButton = {},
         onNavigationDrawerIconClick = onNavigationDrawerIconClicked,
-        onGridMenuItemClick = { /*TODO*/ },
-        onListMenuItemClick = { /*TODO*/ },
-        onSimpleListMenuItemClick = { /*TODO*/ },
-        onSearchMenuItemClick = {}
+        topAppBarActions = {
+            DefaultActions(
+                onSearchMenuItemClick = { /*TODO*/ },
+                onEditMenuItemClick = { /*TODO*/ },
+                onSortMenuItemClick = { /*TODO*/ },
+                onGridMenuItemClick = { /*TODO*/ },
+                onListMenuItemClick = { /*TODO*/ },
+                onSimpleListMenuItemClick = {}
+            )
+        }
     )
 }

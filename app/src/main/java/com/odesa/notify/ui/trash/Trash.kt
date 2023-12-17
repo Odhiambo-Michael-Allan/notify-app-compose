@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.odesa.notify.R
 import com.odesa.notify.ui.components.ScreenContent
+import com.odesa.notify.ui.components.TrashActions
 
 @Composable
 fun TrashScreen(
@@ -19,9 +20,11 @@ fun TrashScreen(
         bottomBar = {},
         floatingActionButton = {},
         onNavigationDrawerIconClick = onNavigationDrawerIconClicked,
-        onGridMenuItemClick = {},
-        onListMenuItemClick = {},
-        onSimpleListMenuItemClick = {},
-        onSearchMenuItemClick = {}
+        topAppBarActions = {
+            TrashActions(
+                onEditMenuItemClick = { /*TODO*/ },
+                onEmptyTrashMenuItemClick = {}
+            )
+        }
     )
 }

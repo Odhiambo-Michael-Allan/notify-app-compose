@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Alarm
 import androidx.compose.material.icons.filled.Archive
 import androidx.compose.material.icons.filled.ConnectWithoutContact
 import androidx.compose.material.icons.filled.Delete
@@ -97,7 +98,7 @@ fun AppContent(
                         navController.navigateSingleTopTo( Reminders.route )
                         openDrawer( false )
                     },
-                    icon = Icons.Default.Archive,
+                    icon = Icons.Default.Alarm,
                     iconDescriptionId = R.string.reminder
                 )
 
