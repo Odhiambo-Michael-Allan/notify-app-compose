@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "notify-app-compose"
+rootProject.name = "notify"
 include(":app")
  

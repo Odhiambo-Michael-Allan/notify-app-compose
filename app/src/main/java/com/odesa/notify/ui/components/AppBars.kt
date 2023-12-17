@@ -1,21 +1,17 @@
-package com.odesa.notify_app_compose.ui.components
+package com.odesa.notify.ui.components
 
+import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Brush
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -28,19 +24,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.odesa.notify_app_compose.R
-import com.odesa.notify_app_compose.ui.theme.NotifyappcomposeTheme
+import com.odesa.notify.R
+import com.odesa.notify.ui.theme.NotifyTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
+    @StringRes titleId: Int,
     scrollBehavior: TopAppBarScrollBehavior,
+    onNavigationDrawerIconClicked: () -> Unit,
     onGridMenuItemClick: () -> Unit,
     onListMenuItemClick: () -> Unit,
-    onSimpleListMenuItemClick: () -> Unit
+    onSimpleListMenuItemClick: () -> Unit,
+    onSearchMenuItemClick: () -> Unit
 ) {
     var dropdownMenuExpanded by remember { mutableStateOf( false ) }
     var viewDropdownMenuExpanded by remember { mutableStateOf( false ) }
@@ -52,11 +51,11 @@ fun TopBar(
 
     CenterAlignedTopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = MaterialTheme.colorScheme.background,
             titleContentColor = MaterialTheme.colorScheme.primary
         ),
         navigationIcon = {
-            IconButton( onClick = { /*TODO*/ } ) {
+            IconButton( onClick = onNavigationDrawerIconClicked ) {
                 Icon(
                     imageVector = Icons.Filled.Menu,
                     contentDescription = null
@@ -109,7 +108,7 @@ fun TopBar(
             }
         },
         title = {
-            Text( "Notes" )
+            Text( text = stringResource( id = titleId ) )
         },
         scrollBehavior = scrollBehavior
     )
@@ -119,12 +118,15 @@ fun TopBar(
 @Preview( showBackground = true )
 @Composable
 fun TopBarPreview() {
-    NotifyappcomposeTheme {
+    NotifyTheme {
         TopBar(
+            titleId = R.string.home,
             scrollBehavior = TopAppBarDefaults
-                .enterAlwaysScrollBehavior(rememberTopAppBarState()),
+                .enterAlwaysScrollBehavior(rememberTopAppBarState() ),
+            onNavigationDrawerIconClicked = {},
             onGridMenuItemClick = {},
-            onListMenuItemClick = {}) {}
+            onListMenuItemClick = {},
+            onSimpleListMenuItemClick = {} ) {}
     }
 }
 
@@ -153,7 +155,7 @@ fun BottomBar() {
 @Preview( showBackground = true )
 @Composable
 fun BottomBarPreview(){
-    NotifyappcomposeTheme {
+    NotifyTheme {
         BottomBar()
     }
 }

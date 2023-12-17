@@ -1,4 +1,4 @@
-package com.odesa.notify_app_compose
+package com.odesa.notify
 
 import org.junit.Test
 

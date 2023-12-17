@@ -1,4 +1,4 @@
-package com.odesa.notify_app_compose.ui.components
+package com.odesa.notify.ui.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Edit
@@ -8,7 +8,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
-import com.odesa.notify_app_compose.R
+import com.odesa.notify.R
 
 @Composable
 fun TopAppBarDropDownMenu(

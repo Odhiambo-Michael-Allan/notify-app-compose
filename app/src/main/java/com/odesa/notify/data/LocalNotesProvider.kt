@@ -1,7 +1,6 @@
-package com.odesa.notify_app_compose.data
+package com.odesa.notify.data
 
-import com.odesa.notify_app_compose.data.model.Note
-import java.util.UUID
+import com.odesa.notify.data.model.Note
 
 object LocalNotesProvider {
 

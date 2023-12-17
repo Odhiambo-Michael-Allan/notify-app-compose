@@ -1,4 +1,4 @@
-package com.odesa.notify_app_compose.ui.theme
+package com.odesa.notify.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -38,7 +38,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun NotifyappcomposeTheme(
+fun NotifyTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

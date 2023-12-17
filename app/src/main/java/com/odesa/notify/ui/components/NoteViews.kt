@@ -1,4 +1,4 @@
-package com.odesa.notify_app_compose.ui.components
+package com.odesa.notify.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -18,8 +18,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.odesa.notify_app_compose.R
-import com.odesa.notify_app_compose.ui.theme.NotifyappcomposeTheme
+import com.odesa.notify.R
+import com.odesa.notify.ui.theme.NotifyTheme
 
 @Composable
 fun DefaultNoteView(
@@ -58,7 +58,7 @@ fun DefaultNoteView(
 @Preview( showBackground = true )
 @Composable
 fun DefaultNoteViewPreview() {
-    NotifyappcomposeTheme {
+    NotifyTheme {
         DefaultNoteView(
             title = "Refactor WaterCounter composable by splitting it " +
                     "into two parts: stateful and stateless Counter.",
@@ -127,7 +127,7 @@ fun SimpleListNoteView(
 @Preview( showBackground = true )
 @Composable
 fun NoteSimpleListViewPreview() {
-    NotifyappcomposeTheme {
+    NotifyTheme {
         SimpleListNoteView(
             title = "Refactor WaterCounter composable by splitting it " +
                     "into two parts: stateful and stateless Counter.",

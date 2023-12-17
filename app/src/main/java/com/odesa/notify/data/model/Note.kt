@@ -1,4 +1,4 @@
-package com.odesa.notify_app_compose.data.model
+package com.odesa.notify.data.model
 
 data class Note(
     val id: Long,

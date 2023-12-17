@@ -1,35 +1,47 @@
-package com.odesa.notify_app_compose
+package com.odesa.notify.ui
 
 import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.odesa.notify_app_compose.ui.components.NotesScreen
-import com.odesa.notify_app_compose.ui.theme.NotifyappcomposeTheme
+import com.odesa.notify.ui.home.HomeViewModel
+import com.odesa.notify.ui.theme.NotifyTheme
+import android.graphics.Color
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    private val viewModel: HomeViewModel by viewModels()
+
+    override fun onCreate( savedInstanceState: Bundle? ) {
+        super.onCreate( savedInstanceState )
+//        enableEdgeToEdge(
+//            SystemBarStyle.auto( Color.TRANSPARENT, Color.TRANSPARENT )
+//        )
         setContent {
-            NotifyappcomposeTheme {
+            NotifyTheme {
+                val uiState by viewModel.uiState.collectAsState()
+
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NotesScreen()
+                    NotifyApp()
                 }
             }
         }
     }
 }
+
 
 const val GRID_VIEW = Activity.RESULT_FIRST_USER + 1
 const val LIST_VIEW = Activity.RESULT_FIRST_USER + 2
