@@ -32,7 +32,7 @@ import com.odesa.notify.R
 import com.odesa.notify.ui.theme.NotifyTheme
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn( ExperimentalMaterial3Api::class )
 @Composable
 fun TopBar(
     @StringRes titleId: Int,
@@ -90,11 +90,26 @@ fun DefaultActions(
         DefaultDropdownMenu(
             expanded = dropdownMenuExpanded,
             onDismissRequest = { dropdownMenuExpanded = false },
-            onEditMenuItemClick = onEditMenuItemClick,
-            onSortMenuItemClick = onSortMenuItemClick,
-            onGridMenuItemClick = onGridMenuItemClick,
-            onListMenuItemClick = onListMenuItemClick,
-            onSimpleListMenuItemClick = onSimpleListMenuItemClick
+            onEditMenuItemClick = {
+                onEditMenuItemClick()
+                dropdownMenuExpanded = false
+            },
+            onSortMenuItemClick = {
+                onSortMenuItemClick()
+                dropdownMenuExpanded = false
+            },
+            onGridMenuItemClick = {
+                onGridMenuItemClick()
+                dropdownMenuExpanded = false
+            },
+            onListMenuItemClick = {
+                onListMenuItemClick()
+                dropdownMenuExpanded = false
+            },
+            onSimpleListMenuItemClick = {
+                onSimpleListMenuItemClick()
+                dropdownMenuExpanded = false
+            }
         )
     }
 }
@@ -115,8 +130,14 @@ fun TrashActions(
         TrashDropdownMenu(
             expanded = dropdownMenuExpanded,
             onDismissRequest = { dropdownMenuExpanded = false },
-            onEditMenuItemClick = { dropdownMenuExpanded = false },
-            onEmptyTrashMenuItemClick = { dropdownMenuExpanded = false }
+            onEditMenuItemClick = {
+                onEditMenuItemClick()
+                dropdownMenuExpanded = false
+            },
+            onEmptyTrashMenuItemClick = {
+                onEmptyTrashMenuItemClick()
+                dropdownMenuExpanded = false
+            }
         )
     }
 }

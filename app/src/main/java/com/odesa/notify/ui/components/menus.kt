@@ -67,9 +67,18 @@ fun DefaultDropdownMenu(
     ViewDropDownMenu(
         expanded = viewDropdownMenuExpanded,
         onDismissRequest = { viewDropdownMenuExpanded = false },
-        onGridMenuItemClick = onGridMenuItemClick,
-        onListMenuItemClick = onListMenuItemClick,
-        onSimpleListMenuItemClick = onSimpleListMenuItemClick
+        onGridMenuItemClick = {
+            onGridMenuItemClick()
+            viewDropdownMenuExpanded = false
+        },
+        onListMenuItemClick = {
+            onListMenuItemClick()
+            viewDropdownMenuExpanded = false
+        },
+        onSimpleListMenuItemClick = {
+            onSimpleListMenuItemClick()
+            viewDropdownMenuExpanded = false
+        }
     )
 }
 
